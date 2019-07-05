@@ -15,8 +15,8 @@ public class Logic : MonoBehaviour
     private float timer = 0.0f;
 
     public Animation newRoundUI;
+    public Animation endRoundUI;
     public Slider timeLimitSlider;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class Logic : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= timelimit)
+        if(timer >= timelimit && !pauseTimer)
         {
             EndRound();
         }
@@ -46,9 +46,14 @@ public class Logic : MonoBehaviour
         
     }
 
+    private bool pauseTimer = false;
     void EndRound()
     {
-        ResetRound();
+        pauseTimer = true;
+        endRoundUI.Play();
+        endRoundUI.GetComponentInChildren<Text>().text = "第" + round + "天白天已结束";
+
+        //ResetRound();
     }
 
 }
