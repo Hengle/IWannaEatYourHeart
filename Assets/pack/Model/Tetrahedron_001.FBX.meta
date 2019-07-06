@@ -6,11 +6,24 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: 01 - Default
+    2100002: M_Sq_00
+    2100004: M_Sq_01
     2300000: //RootNode
     3300000: //RootNode
     4300000: Rectangle005
+    4300002: Rectangle010
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 02fd00a1942708647bf54b6dab253cce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Sq_00
+    second: {fileID: 2100000, guid: 02fd00a1942708647bf54b6dab253cce, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

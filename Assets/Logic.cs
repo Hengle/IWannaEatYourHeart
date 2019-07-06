@@ -13,6 +13,8 @@ public class Logic : MonoBehaviour
 
     static public int[] houseIndexOfModel = new int[9];
 
+    static public float totalTime = 0.0f;
+
     static public bool[] markers = new bool[9];
 
     static bool inited = false;
@@ -31,7 +33,7 @@ public class Logic : MonoBehaviour
             houseIndexOfModel[i] = i;
         }
         //随机交换
-        for(int i = 0; i < houseIndexOfModel.Length *2; ++i)
+        for(int i = 0; i < houseIndexOfModel.Length * 5; ++i)
         {
             int a = Random.Range(0, 9);
             int b = Random.Range(0, 9);

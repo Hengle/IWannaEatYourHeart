@@ -17,6 +17,8 @@ public class NightLogic : MonoBehaviour
 
     public HouseKillTrigger[] houseTriggers;
 
+    public Button nextRoundButton;
+
     private void Awake()
     {
         Logic.Init();
@@ -50,9 +52,11 @@ public class NightLogic : MonoBehaviour
         }
     }
 
-
+    private bool judged = false;
     public void Judgement(int index)
     {
+        judged = true;
+        nextRoundButton.gameObject.SetActive(false);
         if (Logic.targetIndex == Logic.houseIndexOfModel[index]) {
             GameSuccess();
         }
@@ -84,6 +88,11 @@ public class NightLogic : MonoBehaviour
     //----回合提示UI
     public void EndRound()
     {
+        //已经判断了，不可结束
+        if (judged)
+        {
+            return;
+        }
         //当回合数是最后一回合，不允许退出
         if(Logic.round >= Logic.maxRound)
         {

@@ -10,7 +10,12 @@ ModelImporter:
     3300000: //RootNode
     4300000: Circle002
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 02fd00a1942708647bf54b6dab253cce, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

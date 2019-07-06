@@ -18,6 +18,8 @@ public class ProbePanelUI : MonoBehaviour
 
     public GameObject[] modelPrefabs;
 
+    public Text text;
+
     new Animation animation;
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class ProbePanelUI : MonoBehaviour
     {
         showing = true;
         thirdPersonULCon.enabled = false;
+        text.text = house.index.ToString();
 
         modelManager.ChangeModel(modelPrefabs[house.TrueIndex]);
         houseTrigger = house;
