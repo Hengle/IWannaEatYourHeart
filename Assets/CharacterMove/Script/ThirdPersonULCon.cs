@@ -18,6 +18,7 @@ public class ThirdPersonULCon : MonoBehaviour
 	Vector3 speedDir;
 	Vector3 worldSpeedDir;
 	Vector3 baseDir;
+
 	void setPlayerSpeed(Vector3 dir, float speed)//设置当前速度
 	{
 		speedDir = dir * speed * Time.deltaTime * 100.0f;
@@ -299,8 +300,13 @@ public class ThirdPersonULCon : MonoBehaviour
 		mask3 = 1 << (LayerMask.NameToLayer("check"));
 	}
 
-	// Update is called once per frame
-	void Update()
+    private void OnEnable()
+    {
+        outPCOnDragBegin();
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		speedUpdateSet();//速度设置
 

@@ -12,6 +12,8 @@ public class ProbePanelUI : MonoBehaviour
 
     private HouseTrigger houseTrigger = null;
 
+    public ThirdPersonULCon thirdPersonULCon;
+
     new Animation animation;
     private void Awake()
     {
@@ -31,10 +33,20 @@ public class ProbePanelUI : MonoBehaviour
         {
             Cursor.visible = true;
         }
+
+        if(showing && Input.GetKey(KeyCode.Escape))
+        {
+            HideProbePanel();
+        }
     }
 
+
+    private bool showing = false;
     public void ShowProbePanel(HouseTrigger house)
     {
+        showing = true;
+        thirdPersonULCon.enabled = false;
+
         houseTrigger = house;
         for(int i = 0; i < houseTrigger.probeables.Length; ++i)
         {
@@ -65,6 +77,9 @@ public class ProbePanelUI : MonoBehaviour
 
     public void HideProbePanel()
     {
+        showing = false;
+        thirdPersonULCon.enabled = true;
+
         houseTrigger = null;
         animation.Play("HideUI");
         Cursor.visible = false;
@@ -74,7 +89,7 @@ public class ProbePanelUI : MonoBehaviour
     {
         if (houseTrigger)
         {
-            houseTrigger.marker = ifMarker;
+            logic.UpdateMaker(houseTrigger, ifMarker);
         }
     }
 
