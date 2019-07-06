@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Logic : MonoBehaviour
 {
     //-----跨场景数据
-    static public int round = 0;
+    static public int round = 1;
 
     static public int targetIndex;
 
@@ -15,8 +15,15 @@ public class Logic : MonoBehaviour
 
     static public bool[] markers = new bool[9];
 
-    static void Init()
+    static bool inited = false;
+
+    static public void Init()
     {
+        if (inited)
+        {
+            return;
+        }
+        inited = true;
         targetIndex = 0;
         //先列好序列
         for(int i = 0;i<houseIndexOfModel.Length ;++i)
@@ -26,8 +33,8 @@ public class Logic : MonoBehaviour
         //随机交换
         for(int i = 0; i < houseIndexOfModel.Length *2; ++i)
         {
-            int a = Random.Range(0, 6);
-            int b = Random.Range(0, 6);
+            int a = Random.Range(0, 9);
+            int b = Random.Range(0, 9);
             int t = houseIndexOfModel[a];
             houseIndexOfModel[a] = houseIndexOfModel[b];
             houseIndexOfModel[b] = t;
@@ -43,7 +50,7 @@ public class Logic : MonoBehaviour
 
 
     //------
-    public int maxRound = 3;
+    static public int maxRound = 3;
     [HideInInspector]
     public int probeCount = 0;
     public int maxProbeCount = 5;
@@ -61,6 +68,11 @@ public class Logic : MonoBehaviour
     public Slider timeLimitSlider;
 
     public HouseTrigger[] houseTriggers;
+
+    private void Awake()
+    {
+        Logic.Init();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -95,15 +107,17 @@ public class Logic : MonoBehaviour
         player.transform.position = spawnPoint.position;
 
         timer = 0;
-        round += 1;
         probeCount = maxProbeCount;
 
         for(int i = 0; i< houseTriggers.Length; ++i)
         {
-            for(int j =0;j<6; ++j)
+            houseTriggers[i].marker = Logic.markers[i];
+            houseTriggers[i].index = i;
+            houseTriggers[i].TrueIndex = Logic.houseIndexOfModel[i];
+            for (int j =0;j<6; ++j)
             {
                 houseTriggers[i].probed[j] = false;
-                houseTriggers[i].marker = markers[i];
+
             }
         }
 
@@ -127,12 +141,6 @@ public class Logic : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         ChangeNightScene();
         //movementPanel.Play("ShowMovement");
-    }
-    
-    public void RunNewRound()
-    {
-        //movementPanel.Play("EndMovement");
-        ResetRound();
     }
 
     public void ChangeNightScene()

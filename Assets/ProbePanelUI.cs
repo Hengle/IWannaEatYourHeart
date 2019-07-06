@@ -14,6 +14,10 @@ public class ProbePanelUI : MonoBehaviour
 
     public ThirdPersonULCon thirdPersonULCon;
 
+    public ModelPointManager modelManager;
+
+    public GameObject[] modelPrefabs;
+
     new Animation animation;
     private void Awake()
     {
@@ -47,6 +51,7 @@ public class ProbePanelUI : MonoBehaviour
         showing = true;
         thirdPersonULCon.enabled = false;
 
+        modelManager.ChangeModel(modelPrefabs[house.TrueIndex]);
         houseTrigger = house;
         for(int i = 0; i < houseTrigger.probeables.Length; ++i)
         {
@@ -109,6 +114,8 @@ public class ProbePanelUI : MonoBehaviour
 
         logic.probeCount--;
         houseTrigger.probed[index] = true;
+        
+
         buttons[index].GetComponentInChildren<RawImage>(true).gameObject.SetActive(true);
     }
 }

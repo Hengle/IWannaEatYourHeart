@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class HouseKillTrigger : MonoBehaviour
 {
+    public int index;
+    private NightLogic nightLogic;
+    public MovementPanel movementPanel;
+    public bool marker = false;
+    public int TrueIndex;
+
+    private void Awake()
+    {
+        nightLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<NightLogic>();
+
+        marker = Logic.markers[index];
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.tag.Equals("Player")) return;
+        movementPanel.ShowProbePanel(this,index);
+    }
+
+
 }

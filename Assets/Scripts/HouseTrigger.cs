@@ -8,6 +8,8 @@ public class HouseTrigger : MonoBehaviour
     public bool marker = false;
     public bool[] probeables;
     public bool[] probed;
+    public int index;
+    public int TrueIndex;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class HouseTrigger : MonoBehaviour
         {
             probed[i] = false;
         }
+        
     }
 
     // Start is called before the first frame update
@@ -29,25 +32,12 @@ public class HouseTrigger : MonoBehaviour
     {
         
     }
-
-    IEnumerator EndIfLeaveSeconds()
-    {
-        yield return new WaitForSeconds(0.8f);
-        if (!entering)probePanel.HideProbePanel();
-    }
-
-    private bool entering = false;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (entering) return;
-        entering = true;
+        if (!other.tag.Equals("Player")) return;
         probePanel.ShowProbePanel(this);
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        entering = false;
-        StartCoroutine(EndIfLeaveSeconds());
-    }
 }
