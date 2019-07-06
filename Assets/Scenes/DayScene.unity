@@ -1501,6 +1501,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3972775043390332734, guid: fada587e0cceaf3418a333d86c9629d4,
+        type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3941239847194897081, guid: fada587e0cceaf3418a333d86c9629d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fada587e0cceaf3418a333d86c9629d4, type: 3}
@@ -3958,7 +3963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   probeCount: 0
-  maxProbeCount: 7
+  maxProbeCount: 3
   timelimit: 120
   timer: 0
   player: {fileID: 887007091}

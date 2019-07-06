@@ -52,10 +52,10 @@ public class Logic : MonoBehaviour
 
 
     //------
-    static public int maxRound = 3;
+    static public int maxRound = 999;
     [HideInInspector]
     public int probeCount = 0;
-    public int maxProbeCount = 5;
+    public int maxProbeCount = 3;
 
     public float timelimit = 10.0f;
     [HideInInspector]

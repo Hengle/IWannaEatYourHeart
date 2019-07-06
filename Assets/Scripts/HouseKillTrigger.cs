@@ -10,13 +10,17 @@ public class HouseKillTrigger : MonoBehaviour
     public bool marker = false;
     public int TrueIndex;
 
+
+
+    MarkerTextTrick markerText;
+
     private void Awake()
     {
         nightLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<NightLogic>();
 
         marker = Logic.markers[index];
 
-
+        markerText = GetComponentInChildren<MarkerTextTrick>();
     }
 
     // Start is called before the first frame update
@@ -27,7 +31,7 @@ public class HouseKillTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        markerText.gameObject.SetActive(marker);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -66,8 +66,15 @@ public class NightLogic : MonoBehaviour
 
     }
 
+    public Text timeText;
+    public Text roundText;
+
+
     public void GameSuccess()
     {
+        timeText.text = Logic.totalTime.ToString();
+        roundText.text = Logic.round.ToString();
+
         con.enabled = false;
         Cursor.visible = true;
         successPanel.Play();
