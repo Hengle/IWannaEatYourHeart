@@ -87,7 +87,7 @@ public class Logic : MonoBehaviour
     void Update()
     {
         if (alreadyEnd) { return; }
-
+        totalTime += Time.deltaTime;
         timer += Time.deltaTime;
         if(timer >= timelimit && !pauseTimer)
         {
