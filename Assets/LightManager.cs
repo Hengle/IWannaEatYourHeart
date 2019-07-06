@@ -21,6 +21,6 @@ public class LightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        light.intensity =Mathf.Lerp(0,1,logic.timeLimitSlider.value);
+        light.intensity =Mathf.Lerp(1,0,logic.timer/logic.timelimit);
     }
 }
