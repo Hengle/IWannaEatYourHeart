@@ -8,9 +8,13 @@ public class LightManager : MonoBehaviour
 
     private new Light light;
 
+    private float initIntensity;
+
     private void Awake()
     {
         light = GetComponent<Light>();
+        initIntensity = light.intensity;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -21,6 +25,6 @@ public class LightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        light.intensity =Mathf.Lerp(1,0,logic.timer/logic.timelimit);
+        light.intensity =Mathf.Lerp(initIntensity, 0,logic.timer/logic.timelimit);
     }
 }

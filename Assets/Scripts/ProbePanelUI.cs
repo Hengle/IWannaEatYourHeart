@@ -52,7 +52,7 @@ public class ProbePanelUI : MonoBehaviour
     {
         showing = true;
         thirdPersonULCon.enabled = false;
-        text.text = house.index.ToString();
+        text.text = (house.index+1).ToString();
 
         modelManager.ChangeModel(modelPrefabs[house.TrueIndex]);
         houseTrigger = house;
@@ -101,6 +101,8 @@ public class ProbePanelUI : MonoBehaviour
         }
     }
 
+
+    public GameObject jumpText;
     public void Probe(int index)
     {
         //已经探测过
@@ -117,8 +119,8 @@ public class ProbePanelUI : MonoBehaviour
 
         logic.probeCount--;
         houseTrigger.probed[index] = true;
-        
 
+        Instantiate(jumpText,buttons[index].transform);
         buttons[index].GetComponentInChildren<RawImage>(true).gameObject.SetActive(true);
     }
 }

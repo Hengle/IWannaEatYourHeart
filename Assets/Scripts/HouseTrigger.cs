@@ -11,6 +11,8 @@ public class HouseTrigger : MonoBehaviour
     public int index;
     public int TrueIndex;
 
+    MarkerTextTrick markerText;
+
     private void Awake()
     {
         probed = new bool[6];
@@ -18,7 +20,7 @@ public class HouseTrigger : MonoBehaviour
         {
             probed[i] = false;
         }
-        
+        markerText = GetComponentInChildren<MarkerTextTrick>();
     }
 
     // Start is called before the first frame update
@@ -30,7 +32,7 @@ public class HouseTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        markerText.gameObject.SetActive(marker);
     }
     
     private void OnTriggerEnter(Collider other)
