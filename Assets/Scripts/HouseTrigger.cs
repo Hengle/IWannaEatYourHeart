@@ -11,7 +11,6 @@ public class HouseTrigger : MonoBehaviour
 
     private void Awake()
     {
-        probeables = new bool[6];
         probed = new bool[6];
         for(int i = 0; i < 6; ++i)
         {

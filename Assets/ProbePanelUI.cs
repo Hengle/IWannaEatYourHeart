@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class ProbePanelUI : MonoBehaviour
 {
     public Toggle toggle;
+    public Button[] buttons;
+
+    public Logic logic;
 
     private HouseTrigger houseTrigger = null;
 
@@ -33,6 +36,28 @@ public class ProbePanelUI : MonoBehaviour
     public void ShowProbePanel(HouseTrigger house)
     {
         houseTrigger = house;
+        for(int i = 0; i < houseTrigger.probeables.Length; ++i)
+        {
+            //提供选项
+            if(houseTrigger.probeables[i] == false)
+            {
+                buttons[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                buttons[i].gameObject.SetActive(true);
+            }
+            //显示已探测过
+            if (houseTrigger.probed[i])
+            {
+                buttons[i].GetComponentInChildren<RawImage>(true).gameObject.SetActive(true);
+            }
+            else
+            {
+                buttons[i].GetComponentInChildren<RawImage>(true).gameObject.SetActive(false);
+            }
+        }
+
         animation.Play("ShowUI");
         Cursor.visible = true;
         toggle.isOn = houseTrigger.marker;
@@ -51,5 +76,24 @@ public class ProbePanelUI : MonoBehaviour
         {
             houseTrigger.marker = ifMarker;
         }
+    }
+
+    public void Probe(int index)
+    {
+        //已经探测过
+        if (houseTrigger.probed[index])
+        {
+            return;
+        }
+
+        //探测次数不够
+        if(logic.probeCount <= 0)
+        {
+            return;
+        }
+
+        logic.probeCount--;
+        houseTrigger.probed[index] = true;
+        buttons[index].GetComponentInChildren<RawImage>(true).gameObject.SetActive(true);
     }
 }

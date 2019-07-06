@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class Logic : MonoBehaviour
 {
-    private int round = 0;
+    [HideInInspector]
+    public int round = 0;
     public int maxRound = 3;
-
-    private int probeCount = 0;
+    [HideInInspector]
+    public int probeCount = 0;
     public int maxProbeCount = 5;
 
     public float timelimit = 10.0f;
@@ -55,5 +56,6 @@ public class Logic : MonoBehaviour
 
         //ResetRound();
     }
+    
 
 }
