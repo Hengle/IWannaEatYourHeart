@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProbeCountUI : MonoBehaviour
 {
     public Logic logic;
+    public Button button;
     private Text text;
 
     private void Awake()
@@ -22,5 +23,7 @@ public class ProbeCountUI : MonoBehaviour
     void Update()
     {
         text.text = logic.probeCount.ToString();
+
+        button.gameObject.SetActive(logic.probeCount <= 0);
     }
 }

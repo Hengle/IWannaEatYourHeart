@@ -17,6 +17,7 @@ public class Logic : MonoBehaviour
 
     public Animation newRoundUI;
     public Animation endRoundUI;
+    public Animation movementPanel;
     public Slider timeLimitSlider;
     // Start is called before the first frame update
     void Start()
@@ -33,10 +34,16 @@ public class Logic : MonoBehaviour
             EndRound();
         }
         timeLimitSlider.value =  (timelimit-timer) / timelimit;
+
+        //跳过白天
+        if(probeCount <= 0 && Input.GetKey(KeyCode.Escape))
+        {
+            EndRound();
+        }
     }
 
 
-    void ResetRound()
+    public void ResetRound()
     {
         timer = 0;
         round += 1;
@@ -48,13 +55,18 @@ public class Logic : MonoBehaviour
     }
 
     private bool pauseTimer = false;
-    void EndRound()
+    public void EndRound()
     {
         pauseTimer = true;
         endRoundUI.Play();
         endRoundUI.GetComponentInChildren<Text>().text = "第" + round + "天白天已结束";
-
+        StartCoroutine(ShowMovementPanel());
         //ResetRound();
+    }
+
+    IEnumerator ShowMovementPanel(){
+        yield return new WaitForSeconds(3.0f);
+        movementPanel.Play();
     }
     
 
