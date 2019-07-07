@@ -15,6 +15,6 @@ public class ShowModel : MonoBehaviour
     private Vector3 axis = new Vector3(0,1,0);
     void Update()
     {
-        transform.Rotate(axis, rotatespeed);
+        transform.Rotate(axis, rotatespeed*Time.deltaTime);
     }
 }

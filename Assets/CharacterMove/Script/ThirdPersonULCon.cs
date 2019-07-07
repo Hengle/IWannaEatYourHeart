@@ -21,8 +21,7 @@ public class ThirdPersonULCon : MonoBehaviour
 
 	void setPlayerSpeed(Vector3 dir, float speed)//设置当前速度
 	{
-		speedDir = dir * speed * Time.deltaTime * 100.0f;
-   
+		speedDir = dir * speed;
 		speedDir = new Vector3(cmabaseTrans.TransformVector(speedDir).x, 0f, cmabaseTrans.TransformVector(speedDir).z);
 
 		controller.SimpleMove(speedDir);
